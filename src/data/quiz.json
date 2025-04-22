@@ -2,227 +2,220 @@
   "questions": [
     {
       "id": 1,
-      "question": "Combien de fois par semaine fais-tu tes courses ? 🛒",
+      "question": "À quelle fréquence jettes-tu de la nourriture à la maison ? 🍽️",
       "type": "multiple_choice",
       "options": [
-        { "text": "1 fois", "score": 1 },
-        { "text": "2-3 fois", "score": 2 },
-        { "text": "4-5 fois", "score": 3 },
-        { "text": "Plus de 5 fois", "score": 4 }
+        { "text": "Jamais ou très rarement", "score": 0 },
+        { "text": "1 à 2 fois par semaine", "score": 2 },
+        { "text": "3 à 5 fois par semaine", "score": 4 },
+        { "text": "Tous les jours", "score": 6 }
       ]
     },
     {
       "id": 2,
-      "question": "Quelle quantité de nourriture jettes-tu en moyenne par semaine ? 🗑️",
-      "type": "numeric",
-      "unit": "g",
-      "scoringRanges": [
-        { "max": 500, "score": 1 },
-        { "max": 1000, "score": 2 },
-        { "max": 2000, "score": 3 },
-        { "defaultScore": 4 } 
+      "question": "Quels types d'aliments jettes-tu le plus souvent ? 🧺",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Je ne jette rien", "score": 0 },
+        { "text": "Fruits et légumes", "score": 2 },
+        { "text": "Produits laitiers", "score": 3 },
+        { "text": "Viandes / poissons", "score": 5 }
       ]
     },
     {
       "id": 3,
-      "question": "Combien de temps en moyenne laisses-tu couler l'eau en te lavant les mains ? 💧",
+      "question": "Fais-tu attention aux dates de péremption ? ⏳",
       "type": "multiple_choice",
       "options": [
-        { "text": "Moins de 10 secondes", "score": 1 },
-        { "text": "10-20 secondes", "score": 2 },
-        { "text": "20-30 secondes", "score": 3 },
-        { "text": "Plus de 30 secondes", "score": 4 }
+        { "text": "Toujours, je planifie mes repas", "score": 0 },
+        { "text": "Souvent, mais pas systématiquement", "score": 1 },
+        { "text": "Rarement", "score": 3 },
+        { "text": "Jamais", "score": 4 }
       ]
     },
     {
       "id": 4,
-      "question": "Quelle est la température de ton frigo ? ❄️",
-      "type": "numeric",
-      "unit": "°C",
-       "scoringRanges": [
-        { "value": "Je ne sais pas", "score": 3 },
-        { "min": 4, "max": 6, "score": 1 },
-        { "min": 2, "max": 4, "score": 2 },
-        { "min": 6, "max": 8, "score": 2 },
-        { "defaultScore": 3 }
+      "question": "Que fais-tu des restes de repas ? 🍲",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Je les conserve et les mange plus tard", "score": 0 },
+        { "text": "Je les donne ou les composte", "score": 1 },
+        { "text": "Je les jette directement", "score": 5 }
       ]
     },
     {
       "id": 5,
-      "question": "Combien de fois par semaine manges-tu de la viande ? 🥩",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Jamais", "score": 1 },
-        { "text": "1-2 fois", "score": 2 },
-        { "text": "3-4 fois", "score": 3 },
-        { "text": "Plus de 4 fois", "score": 4 }
-      ]
-    },
-    {
-      "id": 6,
-      "question": "Quelle quantité de café consommes-tu par jour ? ☕",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "0 tasse", "score": 1 },
-        { "text": "1-2 tasses", "score": 2 },
-        { "text": "3-4 tasses", "score": 3 },
-        { "text": "Plus de 4 tasses", "score": 4 }
-      ]
-    },
-    {
-      "id": 7,
-      "question": "Combien de sacs réutilisables utilises-tu en moyenne par mois ? 🛍️",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Plus de 10", "score": 1 },
-        { "text": "6-10", "score": 2 },
-        { "text": "3-5", "score": 3 },
-        { "text": "0-2", "score": 4 }
-      ]
-    },
-    {
-      "id": 8,
-      "question": "Quelle est la durée moyenne de tes douches ? 🚿",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Moins de 5 minutes", "score": 1 },
-        { "text": "5-10 minutes", "score": 2 },
-        { "text": "10-15 minutes", "score": 3 },
-        { "text": "Plus de 15 minutes", "score": 4 }
-      ]
-    },
-    {
-      "id": 9,
-      "question": "Combien de fois par semaine utilises-tu des produits frais ? 🥬",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Tous les jours", "score": 1 },
-        { "text": "4-6 fois", "score": 2 },
-        { "text": "2-3 fois", "score": 3 },
-        { "text": "Moins de 2 fois", "score": 4 }
-      ]
-    },
-    {
-      "id": 10,
-      "question": "Quelle quantité d'eau utilises-tu pour faire la vaisselle ? 🍽️",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Un quart de lavabo", "score": 1 },
-        { "text": "Un demi-lavabo", "score": 2 },
-        { "text": "Un lavabo plein", "score": 3 },
-        { "text": "Je ne fais pas attention", "score": 4 }
-      ]
-    },
-    {
-      "id": 11,
-      "question": "Combien de fois par mois achètes-tu des produits bio ? 🌱",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Plus de 4 fois", "score": 1 },
-        { "text": "3-4 fois", "score": 2 },
-        { "text": "1-2 fois", "score": 3 },
-        { "text": "Jamais", "score": 4 }
-      ]
-    },
-    {
-      "id": 12,
-      "question": "Quelle est la température de ton congélateur ? ❄️",
+      "question": "Combien de kilos de nourriture jettes-tu par semaine ? ⚖️",
       "type": "numeric",
-      "unit": "°C",
+      "unit": "kg",
       "scoringRanges": [
-        { "value": "Je ne sais pas", "score": 3 },
-        { "min": -18, "max": -15, "score": 1 }, 
-        { "defaultScore": 2 }
-      ]
-    },
-    {
-      "id": 13,
-      "question": "Combien de fois par semaine cuisines-tu toi-même ? 🍳",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Tous les jours", "score": 1 },
-        { "text": "4-5 fois", "score": 2 },
-        { "text": "2-3 fois", "score": 3 },
-        { "text": "Moins de 2 fois", "score": 4 }
-      ]
-    },
-    {
-      "id": 14,
-      "question": "Quelle quantité de légumineuses consommes-tu par semaine ? 🌱",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Plus de 4 portions", "score": 1 },
-        { "text": "3-4 portions", "score": 2 },
-        { "text": "1-2 portions", "score": 3 },
-        { "text": "Jamais", "score": 4 }
-      ]
-    },
-    {
-      "id": 15,
-      "question": "Combien de temps en moyenne laisses-tu le robinet ouvert en te brossant les dents ? 🦷",
-      "type": "multiple_choice",
-      "options": [
-        { "text": "Je le ferme pendant le brossage", "score": 1 },
-        { "text": "1-2 minutes", "score": 2 },
-        { "text": "2-3 minutes", "score": 3 },
-        { "text": "Plus de 3 minutes", "score": 4 }
-      ]
-    },
-    {
-      "id": 16,
-      "question": "Quelle quantité de pain consommes-tu par jour ? 🥖",
-      "type": "numeric",
-      "unit": "g",
-      "scoringRanges": [
-        { "max": 50, "score": 1 },
-        { "max": 100, "score": 2 },
-        { "max": 150, "score": 3 },
+        { "max": 0.5, "score": 1 },
+        { "max": 1.0, "score": 2 },
+        { "max": 2.0, "score": 3 },
         { "defaultScore": 4 }
       ]
     },
     {
-      "id": 17,
-      "question": "Combien de fois par semaine utilises-tu des produits surgelés ? 🧊",
+      "id": 6,
+      "question": "Combien de personnes vivent dans ton foyer ? 👨‍👩‍👧‍👦",
+      "type": "numeric",
+      "unit": "personnes",
+      "scoringRanges": [
+        { "max": 1, "score": 2 },
+        { "max": 3, "score": 1 },
+        { "defaultScore": 0 }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Utilises-tu des produits anti-gaspi (ex : paniers à date courte) ? ♻️",
       "type": "multiple_choice",
       "options": [
-        { "text": "Jamais", "score": 1 },
-        { "text": "1-2 fois", "score": 2 },
-        { "text": "3-4 fois", "score": 3 },
-        { "text": "Plus de 4 fois", "score": 4 }
+        { "text": "Très souvent (presque à chaque course)", "score": 0 },
+        { "text": "Parfois (1 fois sur 2 environ)", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Planifies-tu tes repas à l'avance pour éviter le gaspillage ? 🗓️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, chaque semaine", "score": 0 },
+        { "text": "De temps en temps", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Achètes-tu en vrac ou en juste quantité pour éviter les excès ? 🛍️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Toujours", "score": 0 },
+        { "text": "Souvent", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "As-tu déjà conservé un aliment au-delà de sa date de péremption sans qu’il soit impropre à la consommation ? ⌛",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, régulièrement (je fais confiance à mes sens)", "score": 0 },
+        { "text": "Parfois", "score": 1 },
+        { "text": "Jamais, je jette dès la date dépassée", "score": 3 }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "As-tu un composteur ou une solution pour valoriser les déchets organiques ? 🌱",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, composteur domestique ou partagé", "score": 0 },
+        { "text": "Non, mais je donne mes déchets organiques à quelqu’un", "score": 1 },
+        { "text": "Non, tout part à la poubelle", "score": 3 }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "As-tu déjà partagé ou donné de la nourriture pour éviter de la jeter ? 🙌",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, régulièrement (famille, voisins, appli de dons)", "score": 0 },
+        { "text": "Parfois", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "As-tu déjà acheté un aliment en promotion que tu n'as pas consommé ? 🎯",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Jamais", "score": 0 },
+        { "text": "Parfois", "score": 1 },
+        { "text": "Souvent", "score": 2 },
+        { "text": "Tout le temps", "score": 3 }
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Fais-tu une liste de courses avant d'aller au supermarché ? 📝",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Toujours", "score": 0 },
+        { "text": "Souvent", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Conserves-tu bien tes aliments (réfrigération, congélation, boîtes hermétiques) ? ❄️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, je fais attention à la conservation", "score": 0 },
+        { "text": "Moyennement", "score": 1 },
+        { "text": "Pas vraiment", "score": 2 },
+        { "text": "Pas du tout", "score": 3 }
+      ]
+    },
+    {
+      "id": 16,
+      "question": "As-tu déjà cuisiné des restes pour en faire un nouveau plat ? 👩‍🍳",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Oui, très souvent", "score": 0 },
+        { "text": "Parfois", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Jettes-tu des produits encore emballés ? 📦",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Jamais", "score": 0 },
+        { "text": "Rarement", "score": 1 },
+        { "text": "Parfois", "score": 2 },
+        { "text": "Souvent", "score": 3 }
       ]
     },
     {
       "id": 18,
-      "question": "Quelle quantité de fruits et légumes consommes-tu par jour ? 🍎",
-      "type": "numeric",
-      "unit": "g",
-      "scoringRanges": [
-        { "min": 400, "score": 1 }, 
-        { "max": 400, "score": 2 },
-        { "max": 200, "score": 3 },
-        { "defaultScore": 2 }
+      "question": "Est-ce que tu cuisines des quantités adaptées au nombre de personnes ? 🍽️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Toujours", "score": 0 },
+        { "text": "Souvent", "score": 1 },
+        { "text": "Rarement", "score": 2 },
+        { "text": "Jamais", "score": 3 }
       ]
     },
     {
       "id": 19,
-      "question": "Combien de temps en moyenne laisses-tu le four préchauffer ? 🔥",
+      "question": "Est-ce que tu es sensibilisé(e) au gaspillage alimentaire (via médias, école, travail...) ? 📚",
       "type": "multiple_choice",
       "options": [
-        { "text": "Je ne préchauffe pas", "score": 1 }, 
-        { "text": "5 minutes", "score": 2 },
-        { "text": "10 minutes", "score": 3 },
-        { "text": "Plus de 10 minutes", "score": 4 }
+        { "text": "Oui, et cela influence mes choix", "score": 0 },
+        { "text": "Oui, mais ça ne change pas toujours mes habitudes", "score": 1 },
+        { "text": "Non vraiment", "score": 2 },
+        { "text": "Pas du tout", "score": 3 }
       ]
     },
     {
       "id": 20,
-      "question": "Quelle quantité de produits laitiers consommes-tu par jour ? 🥛",
+      "question": "À quelle fréquence fais-tu un tri dans ton frigo ou tes placards ? 🧊",
       "type": "multiple_choice",
       "options": [
-        { "text": "0-1 portion", "score": 1 },
-        { "text": "1-2 portions", "score": 2 },
-        { "text": "2-3 portions", "score": 3 },
-        { "text": "Plus de 3 portions", "score": 4 }
+        { "text": "Chaque semaine", "score": 0 },
+        { "text": "Tous les 15 jours", "score": 1 },
+        { "text": "Une fois par mois", "score": 2 },
+        { "text": "Rarement ou jamais", "score": 3 }
       ]
     }
   ]
