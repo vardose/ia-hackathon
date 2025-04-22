@@ -244,7 +244,7 @@ export default function Quiz() {
     }
 
     const chartData = {
-      labels: ['Anti-Gaspi (%)', 'Gaspillage (%)'],
+      labels: ['Part préservée', 'Part gaspillée'],
       datasets: [
         {
           data: chartDataValues, 
@@ -263,7 +263,7 @@ export default function Quiz() {
       cutout: '75%',
       plugins: {
         legend: {
-          display: true,
+          display: false,
           position: 'bottom' as const,
           labels: {
             padding: 25,
@@ -361,16 +361,30 @@ export default function Quiz() {
         
         {/* Chart and Score Section */}
         <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8 border border-amber-100">
-          <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto mb-6 doughnut-shadow">
-            <Doughnut data={chartData} options={chartOptions} />
-            <div className="absolute inset-0 flex items-center justify-center flex-col text-center">
-              <div className="flex flex-col items-center justify-center transform -translate-y-1">
-                <span className="text-5xl sm:text-6xl font-bold text-amber-600">{roundedPercentage}%</span>
-                <span className="text-sm sm:text-base text-gray-600 mt-1">Score anti-gaspi</span>
+          <div className="relative w-full h-full mx-auto mb-6 doughnut-shadow">
+            <div className='d-flex items-center justify-center h-full w-full'>
+              <Doughnut data={chartData} options={chartOptions} />
+              <div className="absolute inset-0 flex items-center justify-center flex-col text-center">
+                <div className="flex flex-col items-center justify-center transform -translate-y-1 bg mt-1">
+                  <span className="text-5xl sm:text-5xl font-bold text-amber-600">{roundedPercentage}%</span>
+                </div>
               </div>
             </div>
           </div>
-          <p className="text-base sm:text-lg text-gray-700">
+          
+          {/* Legend ici */}
+          <div className="flex justify-center space-x-6 mt-4 text-sm text-gray-600">
+            <div className="flex items-center">
+              <span className="w-3 h-3 rounded-full bg-[#f59e0b] mr-2"></span>
+              <span>Part préservée</span>
+            </div>
+            <div className="flex items-center">
+              <span className="w-3 h-3 rounded-full bg-[#ef4444] mr-2"></span>
+              <span>Part gaspillée</span>
+            </div>
+          </div>
+          
+          <p className="text-base sm:text-lg text-gray-700 mt-4">
             Score Total : <span className="font-semibold text-gray-900">{totalScore}</span>
             <span className="text-xs text-gray-500 block sm:inline sm:ml-2">
               (Min: {minPossibleScore} / Max: {maxPossibleScore})
