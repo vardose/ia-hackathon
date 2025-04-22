@@ -1,0 +1,229 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Combien de fois par semaine fais-tu tes courses ? 🛒",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "1 fois", "score": 1 },
+        { "text": "2-3 fois", "score": 2 },
+        { "text": "4-5 fois", "score": 3 },
+        { "text": "Plus de 5 fois", "score": 4 }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Quelle quantité de nourriture jettes-tu en moyenne par semaine ? 🗑️",
+      "type": "numeric",
+      "unit": "g",
+      "scoringRanges": [
+        { "max": 500, "score": 1 },
+        { "max": 1000, "score": 2 },
+        { "max": 2000, "score": 3 },
+        { "defaultScore": 4 } 
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Combien de temps en moyenne laisses-tu couler l'eau en te lavant les mains ? 💧",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Moins de 10 secondes", "score": 1 },
+        { "text": "10-20 secondes", "score": 2 },
+        { "text": "20-30 secondes", "score": 3 },
+        { "text": "Plus de 30 secondes", "score": 4 }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Quelle est la température de ton frigo ? ❄️",
+      "type": "numeric",
+      "unit": "°C",
+       "scoringRanges": [
+        { "value": "Je ne sais pas", "score": 3 },
+        { "min": 4, "max": 6, "score": 1 },
+        { "min": 2, "max": 4, "score": 2 },
+        { "min": 6, "max": 8, "score": 2 },
+        { "defaultScore": 3 }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Combien de fois par semaine manges-tu de la viande ? 🥩",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Jamais", "score": 1 },
+        { "text": "1-2 fois", "score": 2 },
+        { "text": "3-4 fois", "score": 3 },
+        { "text": "Plus de 4 fois", "score": 4 }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Quelle quantité de café consommes-tu par jour ? ☕",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "0 tasse", "score": 1 },
+        { "text": "1-2 tasses", "score": 2 },
+        { "text": "3-4 tasses", "score": 3 },
+        { "text": "Plus de 4 tasses", "score": 4 }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Combien de sacs réutilisables utilises-tu en moyenne par mois ? 🛍️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Plus de 10", "score": 1 },
+        { "text": "6-10", "score": 2 },
+        { "text": "3-5", "score": 3 },
+        { "text": "0-2", "score": 4 }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "Quelle est la durée moyenne de tes douches ? 🚿",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Moins de 5 minutes", "score": 1 },
+        { "text": "5-10 minutes", "score": 2 },
+        { "text": "10-15 minutes", "score": 3 },
+        { "text": "Plus de 15 minutes", "score": 4 }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Combien de fois par semaine utilises-tu des produits frais ? 🥬",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Tous les jours", "score": 1 },
+        { "text": "4-6 fois", "score": 2 },
+        { "text": "2-3 fois", "score": 3 },
+        { "text": "Moins de 2 fois", "score": 4 }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Quelle quantité d'eau utilises-tu pour faire la vaisselle ? 🍽️",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Un quart de lavabo", "score": 1 },
+        { "text": "Un demi-lavabo", "score": 2 },
+        { "text": "Un lavabo plein", "score": 3 },
+        { "text": "Je ne fais pas attention", "score": 4 }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Combien de fois par mois achètes-tu des produits bio ? 🌱",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Plus de 4 fois", "score": 1 },
+        { "text": "3-4 fois", "score": 2 },
+        { "text": "1-2 fois", "score": 3 },
+        { "text": "Jamais", "score": 4 }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "Quelle est la température de ton congélateur ? ❄️",
+      "type": "numeric",
+      "unit": "°C",
+      "scoringRanges": [
+        { "value": "Je ne sais pas", "score": 3 },
+        { "min": -18, "max": -15, "score": 1 }, 
+        { "defaultScore": 2 }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "Combien de fois par semaine cuisines-tu toi-même ? 🍳",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Tous les jours", "score": 1 },
+        { "text": "4-5 fois", "score": 2 },
+        { "text": "2-3 fois", "score": 3 },
+        { "text": "Moins de 2 fois", "score": 4 }
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Quelle quantité de légumineuses consommes-tu par semaine ? 🌱",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Plus de 4 portions", "score": 1 },
+        { "text": "3-4 portions", "score": 2 },
+        { "text": "1-2 portions", "score": 3 },
+        { "text": "Jamais", "score": 4 }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "Combien de temps en moyenne laisses-tu le robinet ouvert en te brossant les dents ? 🦷",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Je le ferme pendant le brossage", "score": 1 },
+        { "text": "1-2 minutes", "score": 2 },
+        { "text": "2-3 minutes", "score": 3 },
+        { "text": "Plus de 3 minutes", "score": 4 }
+      ]
+    },
+    {
+      "id": 16,
+      "question": "Quelle quantité de pain consommes-tu par jour ? 🥖",
+      "type": "numeric",
+      "unit": "g",
+      "scoringRanges": [
+        { "max": 50, "score": 1 },
+        { "max": 100, "score": 2 },
+        { "max": 150, "score": 3 },
+        { "defaultScore": 4 }
+      ]
+    },
+    {
+      "id": 17,
+      "question": "Combien de fois par semaine utilises-tu des produits surgelés ? 🧊",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Jamais", "score": 1 },
+        { "text": "1-2 fois", "score": 2 },
+        { "text": "3-4 fois", "score": 3 },
+        { "text": "Plus de 4 fois", "score": 4 }
+      ]
+    },
+    {
+      "id": 18,
+      "question": "Quelle quantité de fruits et légumes consommes-tu par jour ? 🍎",
+      "type": "numeric",
+      "unit": "g",
+      "scoringRanges": [
+        { "min": 400, "score": 1 }, 
+        { "max": 400, "score": 2 },
+        { "max": 200, "score": 3 },
+        { "defaultScore": 2 }
+      ]
+    },
+    {
+      "id": 19,
+      "question": "Combien de temps en moyenne laisses-tu le four préchauffer ? 🔥",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "Je ne préchauffe pas", "score": 1 }, 
+        { "text": "5 minutes", "score": 2 },
+        { "text": "10 minutes", "score": 3 },
+        { "text": "Plus de 10 minutes", "score": 4 }
+      ]
+    },
+    {
+      "id": 20,
+      "question": "Quelle quantité de produits laitiers consommes-tu par jour ? 🥛",
+      "type": "multiple_choice",
+      "options": [
+        { "text": "0-1 portion", "score": 1 },
+        { "text": "1-2 portions", "score": 2 },
+        { "text": "2-3 portions", "score": 3 },
+        { "text": "Plus de 3 portions", "score": 4 }
+      ]
+    }
+  ]
+} 
