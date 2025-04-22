@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { FaLeaf } from 'react-icons/fa';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -250,12 +251,12 @@ export default function Quiz() {
     }
 
     const chartData = {
-      labels: ['Votre Score (%)', 'Marge de Progression (%)'], // Simplified legend labels
+      labels: ['Votre Score (%)', 'Marge de Progression (%)'],
       datasets: [
         {
           data: chartDataValues, 
-          backgroundColor: ['#4CAF50', '#FFCD56'], // Green for good part, Yellow for bad part
-          hoverBackgroundColor: ['#66BB6A', '#FFDA63'],
+          backgroundColor: ['#4CAF50', '#FFC107'], // Vert plus naturel, Jaune ambré
+          hoverBackgroundColor: ['#66BB6A', '#FFD54F'],
           borderColor: '#ffffff',
           borderWidth: 3, 
           hoverOffset: 4
@@ -311,13 +312,13 @@ export default function Quiz() {
     }
 
     // Determine background based on score
-    let bgColorClass = 'from-blue-50 to-indigo-100'; // Default
+    let bgColorClass = 'from-blue-50 to-teal-100'; // Default
     if (roundedPercentage >= 80) {
-      bgColorClass = 'from-green-50 to-emerald-100';
+      bgColorClass = 'from-green-100 to-emerald-200';
     } else if (roundedPercentage >= 50) {
       bgColorClass = 'from-yellow-50 to-amber-100';
     } else {
-      bgColorClass = 'from-red-50 to-rose-100';
+      bgColorClass = 'from-orange-50 to-rose-100';
     }
 
     return (
@@ -381,11 +382,19 @@ export default function Quiz() {
 
   // --- Quiz Screen --- 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl">
-      {/* Barre de progression */}
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-8">
+    <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl shadow-xl border border-green-100">
+      {/* Ajouter ces éléments décoratifs en haut */}
+      <div className="absolute top-4 right-4 text-green-600 opacity-20">
+        <FaLeaf size={40} className="floating" style={{animationDelay: '0.5s'}} />
+      </div>
+      <div className="absolute top-20 left-4 text-green-500 opacity-20">
+        <FaLeaf size={30} className="floating" style={{animationDelay: '2s'}} />
+      </div>
+      
+      {/* Barre de progression avec une couleur plus verte */}
+      <div className="w-full bg-green-100 rounded-full h-2.5 mb-8">
         <div 
-          className="bg-green-500 h-2.5 rounded-full transition-all duration-500 ease-out"
+          className="bg-green-600 h-2.5 rounded-full transition-all duration-500 ease-out"
           style={{ width: `${((currentQuestionIndex + 1) / typedQuizData.questions.length) * 100}%` }}
         ></div>
       </div>
@@ -418,16 +427,16 @@ export default function Quiz() {
           <div className="space-y-3">
             {currentQuestion.options?.map((option, index) => (
               <button
-                key={index}
-                onClick={() => handleAnswer(option)}
-                className={`w-full px-6 py-4 text-lg font-medium rounded-lg transition-all duration-200 text-left ${
-                  answers[currentQuestionIndex]?.answer === option.text
-                    ? 'bg-green-500 text-white shadow-lg ring-2 ring-green-300' // Enhanced selected style
-                    : 'bg-white text-gray-800 hover:bg-gray-100 shadow-sm border border-gray-200' // Subtle hover
-                }`}
-              >
-                {option.text}
-              </button>
+              key={index}
+              onClick={() => handleAnswer(option)}
+              className={`w-full px-6 py-4 text-lg font-medium rounded-lg transition-all duration-200 text-left ${
+                answers[currentQuestionIndex]?.answer === option.text
+                  ? 'bg-green-600 text-white shadow-lg ring-2 ring-green-300'
+                  : 'bg-white text-green-800 hover:bg-green-50 shadow-sm border border-green-200'
+              }`}
+            >
+              {option.text}
+            </button>
             ))}
           </div>
         )}
@@ -437,24 +446,23 @@ export default function Quiz() {
         {currentQuestionIndex > 0 ? (
           <button
             onClick={handlePrevious}
-            className="px-6 py-3 text-lg font-medium text-gray-600 bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-sm border border-gray-200"
+            className="px-6 py-3 text-lg font-medium text-green-700 bg-white rounded-lg hover:bg-green-50 transition-colors shadow-sm border border-green-200"
           >
             Précédent
           </button>
-        ) : ( <div className="w-32"></div>) /* Placeholder to keep Next button aligned */ }
+        ) : ( <div className="w-32"></div>) }
         
         <button
           onClick={handleNextQuestion}
-          // Disable next if MC and no answer selected OR if numeric and input is empty (optional, decided against for now)
           disabled={currentQuestion.type === 'multiple_choice' && !answers[currentQuestionIndex]}
           className={`px-6 py-3 text-lg font-medium text-white rounded-lg transition-colors shadow-sm ${ 
             isLastQuestion
-              ? 'bg-green-500 hover:bg-green-600'
-              : 'bg-blue-500 hover:bg-blue-600'
+              ? 'bg-green-600 hover:bg-green-700'
+              : 'bg-teal-500 hover:bg-teal-600'
           } ${ (currentQuestion.type === 'multiple_choice' && !answers[currentQuestionIndex]) ? 'opacity-50 cursor-not-allowed' : '' }`}
         >
           {isLastQuestion
-            ? 'Voir mes résultats' // Changed button text
+            ? 'Voir mes résultats'
             : 'Suivant'}
         </button>
       </div>
