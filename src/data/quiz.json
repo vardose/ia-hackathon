@@ -241,30 +241,6 @@
         { "max": 20, "score": 2 },
         { "defaultScore": 1 }
       ]
-    },
-    {
-      "id": 21,
-      "question": "Quel est ton budget moyen de courses par semaine ? 💰",
-      "type": "numeric",
-      "unit": "€",
-      "scoringRanges": [
-        { "max": 50, "score": 1 },
-        { "max": 100, "score": 2 },
-        { "max": 200, "score": 3 },
-        { "defaultScore": 4 }
-      ]
-    },
-    {
-      "id": 22,
-      "question": "Quelle part de ce budget est gaspillée en nourriture jetée chaque semaine ? 🗑️",
-      "type": "numeric",
-      "unit": "€",
-      "scoringRanges": [
-        { "max": 5, "score": 4 },
-        { "max": 10, "score": 3 },
-        { "max": 20, "score": 2 },
-        { "defaultScore": 1 }
-      ]
     }
   ]
 }
