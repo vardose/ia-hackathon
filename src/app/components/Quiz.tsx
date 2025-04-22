@@ -151,6 +151,17 @@ export default function Quiz() {
         currentScore = calculateNumericScore(inputValue, currentQuestion.scoringRanges || []);
         currentAnswer = inputValue;
         answerProvided = true;
+
+        // Spécifiquement capturer les valeurs de budget et de gaspillage
+        const numericValue = parseFloat(inputValue.replace(',', '.'));
+        if (!isNaN(numericValue)) {
+            if (currentQuestion.id === 21) { // ID pour le budget hebdomadaire
+                setWeeklyBudget(numericValue);
+            }
+            if (currentQuestion.id === 22) { // ID pour le gaspillage hebdomadaire
+                setWeeklyWaste(numericValue);
+            }
+        }
       } else {
         // Assign default score if input is empty
         const defaultRange = currentQuestion.scoringRanges?.find(r => r.defaultScore !== undefined);
@@ -211,6 +222,8 @@ export default function Quiz() {
     setAnswers({});
     setTotalScore(0);
     setShowRecap(false);
+    setWeeklyBudget(null);
+    setWeeklyWaste(null);
   };
 
   // --- Ajout d'un hook pour l'animation d'entrée ---
@@ -352,8 +365,18 @@ export default function Quiz() {
     // Économies potentielles: différence avec gaspillage moyen
     const potentialSavings = Math.max(0, 30 - wasteEquivalent);
 
+    // --- Calculs spécifiques au budget --- 
+    const yearlyWasteCost = weeklyWaste !== null ? Math.round(weeklyWaste * 52) : null;
+    let budgetWastePercentage: number | null = null;
+    if (weeklyBudget !== null && weeklyWaste !== null && weeklyBudget > 0) {
+      budgetWastePercentage = Math.round((weeklyWaste / weeklyBudget) * 100);
+    }
+
     // Classes pour l'animation d'entrée
     const animationClass = isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4';
+
+    // Log pour débogage
+    console.log('Recap Screen Render - Weekly Budget:', weeklyBudget, 'Weekly Waste:', weeklyWaste);
 
     return (
       // Main container with dynamic gradient background
@@ -436,6 +459,39 @@ export default function Quiz() {
             </div>
           </div>
           
+          {/* Section Budget et Coût du Gaspillage */} 
+          {(weeklyBudget !== null || weeklyWaste !== null) && (
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 transition-all hover:shadow-md duration-300">
+              <h4 className="text-blue-800 font-medium mb-3 flex items-center justify-center">
+                <MdRestaurant className="mr-2 text-blue-600" /> Impact Financier (Estimations Hebdo.)
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-center">
+                {weeklyBudget !== null && (
+                  <div className="p-2 bg-white/50 rounded">
+                    <p className="text-xs text-blue-700">Budget Courses</p>
+                    <p className="text-lg font-bold text-blue-800">{weeklyBudget} €</p>
+                  </div>
+                )}
+                {weeklyWaste !== null && (
+                  <div className="p-2 bg-white/50 rounded">
+                    <p className="text-xs text-blue-700">Gaspillage Estimé</p>
+                    <p className="text-lg font-bold text-blue-800">{weeklyWaste} €</p>
+                  </div>
+                )}
+              </div>
+              {budgetWastePercentage !== null && (
+                <p className="text-sm text-blue-700 mt-3 text-center">
+                  Cela représente environ <span className="font-bold">{budgetWastePercentage}%</span> de votre budget gaspillé.
+                </p>
+              )}
+              {yearlyWasteCost !== null && (
+                <p className="text-sm text-blue-700 mt-1 text-center">
+                  Soit une perte annuelle estimée à <span className="font-bold">{yearlyWasteCost} €</span>.
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200 transition-all hover:shadow-md duration-300">
             <h4 className="text-amber-800 font-medium mb-2 flex items-center justify-center">
               <GiCook className="mr-2 text-orange-600" /> Astuce anti-gaspi
