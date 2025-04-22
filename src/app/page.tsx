@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         
         <p className="text-center text-amber-700 mb-10 max-w-2xl mx-auto">
-          Découvrez l'impact de vos habitudes de consommation alimentaire et comment vous pouvez contribuer à réduire le gaspillage.
+          Découvrez l&apos;impact de vos habitudes de consommation alimentaire et comment vous pouvez contribuer à réduire le gaspillage.
         </p>
         
         <Quiz />
