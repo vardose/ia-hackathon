@@ -453,9 +453,6 @@ export default function Quiz() {
       <div className="absolute top-4 right-4 text-amber-600 opacity-20">
         <FaAppleAlt size={40} className="floating" style={{animationDelay: '0.5s'}} />
       </div>
-      <div className="absolute bottom-4 left-4 text-orange-600 opacity-20">
-        <MdKitchen size={40} className="floating-reverse" style={{animationDelay: '1.5s'}} />
-      </div>
       
       {/* Barre de progression */}
       <div className="w-full bg-amber-100 rounded-full h-2.5 mb-8">
