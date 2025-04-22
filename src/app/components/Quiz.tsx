@@ -21,14 +21,14 @@ interface ScoringRange {
   max?: number;
   min?: number;
   value?: string;
-  score: number;
+  score?: number;
   defaultScore?: number; 
 }
 
 interface Question {
   id: number;
   question: string;
-  type: 'multiple_choice' | 'numeric';
+  type: string;
   options?: Option[];
   scoringRanges?: ScoringRange[];
   unit?: string;
