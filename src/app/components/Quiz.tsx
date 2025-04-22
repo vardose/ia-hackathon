@@ -9,7 +9,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { FaLeaf } from 'react-icons/fa';
+import { FaAppleAlt, FaCarrot, FaRecycle, FaWeightHanging } from 'react-icons/fa';
+import { GiSlicedBread, GiWheat, GiFruitBowl, GiCook } from 'react-icons/gi';
+import { MdRestaurant, MdKitchen } from 'react-icons/md';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -162,16 +164,7 @@ export default function Quiz() {
       if (answers[currentQuestionIndex]) {
           answerProvided = true;
       } else {
-          // Optional: Assign highest score if no answer selected for MC
-          // const maxScoreOption = currentQuestion.options?.reduce((max, opt) => opt.score > max.score ? opt : max, currentQuestion.options[0]);
-          // currentScore = maxScoreOption?.score ?? 4; // Default to high score
-          // currentAnswer = ''; // Non répondu
-          // setAnswers(prev => ({
-          //     ...prev,
-          //     [currentQuestionIndex]: { answer: currentAnswer, score: currentScore }
-          // }));
-          // answerProvided = true; 
-          // OR simply prevent moving next (handled by disabled state of button)
+          // Optional: Handle no answer selected case
       }
     }
 
@@ -251,12 +244,12 @@ export default function Quiz() {
     }
 
     const chartData = {
-      labels: ['Votre Score (%)', 'Marge de Progression (%)'],
+      labels: ['Anti-Gaspi (%)', 'Gaspillage (%)'],
       datasets: [
         {
           data: chartDataValues, 
-          backgroundColor: ['#4CAF50', '#FFC107'], // Vert plus naturel, Jaune ambré
-          hoverBackgroundColor: ['#66BB6A', '#FFD54F'],
+          backgroundColor: ['#f59e0b', '#ef4444'], // Ambre pour bon score, rouge pour gaspillage
+          hoverBackgroundColor: ['#fbbf24', '#f87171'],
           borderColor: '#ffffff',
           borderWidth: 3, 
           hoverOffset: 4
@@ -273,11 +266,11 @@ export default function Quiz() {
           display: true,
           position: 'bottom' as const,
           labels: {
-            padding: 25, // Increased padding
+            padding: 25,
             boxWidth: 15,
             font: {
               size: 14,
-              family: "'Inter', sans-serif"
+              family: "'Poppins', sans-serif"
             },
             color: '#4B5563'
           }
@@ -289,11 +282,11 @@ export default function Quiz() {
           titleFont: {
             size: 16,
             weight: 'bold' as const,
-            family: "'Inter', sans-serif"
+            family: "'Poppins', sans-serif"
           },
           bodyFont: {
             size: 14,
-            family: "'Inter', sans-serif"
+            family: "'Poppins', sans-serif"
           },
           cornerRadius: 8,
           displayColors: false,
@@ -304,36 +297,76 @@ export default function Quiz() {
     let feedbackMessage = '';
     const roundedPercentage = Math.round(scorePercentage);
     if (roundedPercentage >= 80) {
-        feedbackMessage = "Excellent ! Vos habitudes sont exemplaires. Continuez sur cette voie ! 🌱";
+        feedbackMessage = "Félicitations ! Vous êtes un champion de l'anti-gaspillage alimentaire. Vos habitudes préservent les ressources et la planète ! 🥗";
     } else if (roundedPercentage >= 50) {
-        feedbackMessage = "Pas mal ! Vous êtes sur la bonne voie, mais quelques gestes peuvent encore faire la différence. 🌍";
+        feedbackMessage = "Pas mal ! Vous avez de bonnes pratiques mais quelques ajustements peuvent encore réduire votre gaspillage alimentaire. 🍎";
     } else {
-        feedbackMessage = "Il y a du potentiel ! Chaque effort compte pour un avenir plus durable. 💪";
+        feedbackMessage = "Il y a de la marge de progression ! De petits changements dans vos habitudes peuvent faire une grande différence. 🥕";
     }
 
     // Determine background based on score
-    let bgColorClass = 'from-blue-50 to-teal-100'; // Default
+    let bgColorClass = 'from-orange-50 to-amber-100'; // Default
     if (roundedPercentage >= 80) {
-      bgColorClass = 'from-green-100 to-emerald-200';
+      bgColorClass = 'from-amber-50 to-yellow-100';
     } else if (roundedPercentage >= 50) {
-      bgColorClass = 'from-yellow-50 to-amber-100';
+      bgColorClass = 'from-orange-50 to-amber-100';
     } else {
-      bgColorClass = 'from-orange-50 to-rose-100';
+      bgColorClass = 'from-red-50 to-orange-100';
     }
+
+    // Détermine l'icône et sa couleur basée sur le score
+    let FoodIcon = FaCarrot;
+    let iconColor = "text-amber-600";
+    
+    if (roundedPercentage >= 80) {
+      FoodIcon = GiFruitBowl;
+      iconColor = "text-amber-600";
+    } else if (roundedPercentage >= 50) {
+      FoodIcon = FaCarrot;
+      iconColor = "text-orange-600";
+    } else {
+      FoodIcon = GiSlicedBread;
+      iconColor = "text-red-500";
+    }
+
+    // Calcul de l'équivalent en gaspillage
+    // Moyenne française: 30kg/personne/an
+    const wasteEquivalent = Math.round((100 - roundedPercentage) * 30 / 100);
+    // Économies potentielles: différence avec gaspillage moyen
+    const potentialSavings = Math.max(0, 30 - wasteEquivalent);
 
     return (
       // Main container with dynamic gradient background
-      <div className={`max-w-2xl mx-auto p-6 sm:p-8 bg-gradient-to-br ${bgColorClass} rounded-2xl shadow-xl text-center transition-colors duration-500`}>
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-8">Votre Bilan Écologique</h2>
+      <div className={`max-w-2xl mx-auto p-6 sm:p-8 bg-gradient-to-br ${bgColorClass} rounded-2xl shadow-xl text-center transition-colors duration-500 relative overflow-hidden`}>
+        {/* Éléments décoratifs en arrière-plan */}
+        <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-amber-100 rounded-full opacity-20 blur-xl"></div>
+        <div className="absolute -top-12 -right-12 w-52 h-52 bg-orange-100 rounded-full opacity-20 blur-xl"></div>
+        
+        {/* Petits éléments décoratifs */}
+        <div className="absolute top-6 left-6 text-amber-600 opacity-20">
+          <FaAppleAlt size={30} className="floating" style={{animationDelay: '0.8s'}} />
+        </div>
+        <div className="absolute bottom-6 right-6 text-orange-600 opacity-20">
+          <GiSlicedBread size={20} className="floating" style={{animationDelay: '1.5s'}} />
+        </div>
+        <div className="absolute top-1/3 right-8 text-yellow-600 opacity-20">
+          <GiWheat size={25} className="floating" style={{animationDelay: '2.2s'}} />
+        </div>
+        
+        <div className="flex items-center justify-center mb-6">
+          <FoodIcon className={`${iconColor} text-4xl mr-3`} />
+          <h2 className="text-3xl sm:text-4xl font-bold text-amber-800 font-eco">Votre Bilan Anti-Gaspi</h2>
+          <FoodIcon className={`${iconColor} text-4xl ml-3 transform scale-x-[-1]`} />
+        </div>
         
         {/* Chart and Score Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8">
-          <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto mb-6">
+        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8 border border-amber-100">
+          <div className="relative w-56 h-56 sm:w-64 sm:h-64 mx-auto mb-6 doughnut-shadow">
             <Doughnut data={chartData} options={chartOptions} />
             <div className="absolute inset-0 flex items-center justify-center flex-col text-center">
               <div className="flex flex-col items-center justify-center transform -translate-y-1">
-                <span className="text-5xl sm:text-6xl font-bold text-green-600">{roundedPercentage}%</span>
-                <span className="text-sm sm:text-base text-gray-600 mt-1">Éco-score</span>
+                <span className="text-5xl sm:text-6xl font-bold text-amber-600">{roundedPercentage}%</span>
+                <span className="text-sm sm:text-base text-gray-600 mt-1">Score anti-gaspi</span>
               </div>
             </div>
           </div>
@@ -345,34 +378,67 @@ export default function Quiz() {
           </p>
         </div>
 
-        {/* Feedback Message Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8">
-           <p className="text-lg sm:text-xl text-gray-700 italic leading-relaxed">{feedbackMessage}</p>
+        {/* Impact et Feedback Message Section */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8 border border-amber-100">
+          <p className="text-lg sm:text-xl text-amber-700 italic leading-relaxed mb-4">{feedbackMessage}</p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+            <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <div className="flex items-center justify-center">
+                <FaWeightHanging className="text-amber-600 mr-2" />
+                <h4 className="text-amber-800 font-medium">Estimation annuelle</h4>
+              </div>
+              <p className="text-xl font-bold text-amber-700 mt-2">{wasteEquivalent} kg</p>
+              <p className="text-xs text-amber-600 mt-1">de nourriture gaspillée par an</p>
+            </div>
+            
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="flex items-center justify-center">
+                <FaRecycle className="text-green-600 mr-2" />
+                <h4 className="text-green-800 font-medium">Économies potentielles</h4>
+              </div>
+              <p className="text-xl font-bold text-green-700 mt-2">{potentialSavings} kg</p>
+              <p className="text-xs text-green-600 mt-1">par rapport à la moyenne nationale</p>
+            </div>
+          </div>
+          
+          <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200">
+            <h4 className="text-amber-800 font-medium mb-2 flex items-center justify-center">
+              <GiCook className="mr-2 text-orange-600" /> Astuce anti-gaspi
+            </h4>
+            <p className="text-sm text-amber-700">
+              {roundedPercentage >= 80 
+                ? "Partagez vos restes alimentaires avec des applications comme 'Too Good To Go' ou dans votre communauté locale !"
+                : roundedPercentage >= 50 
+                  ? "Planifiez vos repas à l'avance et n'achetez que ce dont vous avez besoin. Cela réduit les achats impulsifs et le gaspillage."
+                  : "Apprenez à conserver correctement vos aliments et à comprendre la différence entre 'à consommer de préférence avant' et 'à consommer jusqu'au'."
+              }
+            </p>
+          </div>
         </div>
 
         {/* Detailed Answers Section */}
-        <details className="text-left mb-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-md border border-gray-200/50 cursor-pointer overflow-hidden">
-            <summary className="font-semibold text-gray-700 hover:text-gray-900 p-4 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
+        <details className="text-left mb-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-amber-100 cursor-pointer overflow-hidden">
+            <summary className="font-semibold text-amber-700 hover:text-amber-900 p-4 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
               <span>Détail de mes réponses</span>
-              <svg className="w-5 h-5 text-gray-500 transform transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              <svg className="w-5 h-5 text-amber-500 transform transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </summary>
-            <ul className="mt-0 p-4 border-t border-gray-200/60 space-y-3">
+            <ul className="mt-0 p-4 border-t border-amber-100 space-y-3">
                 {typedQuizData.questions.map((q, index) => (
-                    <li key={q.id} className="text-sm border-b border-gray-200/60 pb-3 last:border-b-0">
+                    <li key={q.id} className="text-sm border-b border-amber-100 pb-3 last:border-b-0">
                        <div className="flex justify-between items-start gap-2">
-                           <span className="font-medium text-gray-800 flex-1">{index + 1}. {q.question}</span> 
-                           <span className="text-xs text-gray-500 whitespace-nowrap pt-0.5">(Score: {answers[index]?.score ?? '-'})</span>
+                           <span className="font-medium text-amber-800 flex-1">{index + 1}. {q.question}</span> 
+                           <span className="text-xs text-amber-600 whitespace-nowrap pt-0.5">(Score: {answers[index]?.score ?? '-'})</span>
                        </div>
-                       <span className="block text-blue-600 font-medium ml-1 mt-1">→ {answers[index]?.answer || 'Non répondu'}</span> 
+                       <span className="block text-orange-600 font-medium ml-1 mt-1">→ {answers[index]?.answer || 'Non répondu'}</span> 
                     </li>
                 ))}
             </ul>
         </details>
         
-
         <button
           onClick={handleRestart}
-          className="w-full px-6 py-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+          className="w-full px-6 py-4 text-lg font-medium text-white bg-amber-600 rounded-lg hover:bg-amber-700 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
         >
           Recommencer le questionnaire
         </button>
@@ -382,45 +448,45 @@ export default function Quiz() {
 
   // --- Quiz Screen --- 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl shadow-xl border border-green-100">
-      {/* Ajouter ces éléments décoratifs en haut */}
-      <div className="absolute top-4 right-4 text-green-600 opacity-20">
-        <FaLeaf size={40} className="floating" style={{animationDelay: '0.5s'}} />
+    <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl border border-amber-100 relative">
+      {/* Éléments décoratifs */}
+      <div className="absolute top-4 right-4 text-amber-600 opacity-20">
+        <FaAppleAlt size={40} className="floating" style={{animationDelay: '0.5s'}} />
       </div>
-      <div className="absolute top-20 left-4 text-green-500 opacity-20">
-        <FaLeaf size={30} className="floating" style={{animationDelay: '2s'}} />
+      <div className="absolute bottom-4 left-4 text-orange-600 opacity-20">
+        <MdKitchen size={40} className="floating-reverse" style={{animationDelay: '1.5s'}} />
       </div>
       
-      {/* Barre de progression avec une couleur plus verte */}
-      <div className="w-full bg-green-100 rounded-full h-2.5 mb-8">
+      {/* Barre de progression */}
+      <div className="w-full bg-amber-100 rounded-full h-2.5 mb-8">
         <div 
-          className="bg-green-600 h-2.5 rounded-full transition-all duration-500 ease-out"
+          className="bg-amber-600 h-2.5 rounded-full transition-all duration-500 ease-out"
           style={{ width: `${((currentQuestionIndex + 1) / typedQuizData.questions.length) * 100}%` }}
         ></div>
       </div>
 
       <div className="mb-8">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold text-amber-800">
             Question {currentQuestionIndex + 1}/{typedQuizData.questions.length}
           </h2>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-amber-500">
             {Math.round(((currentQuestionIndex + 1) / typedQuizData.questions.length) * 100)}%
           </span>
         </div>
         
-        <p className="text-xl mb-8 text-gray-700 leading-relaxed">
+        <p className="text-xl mb-8 text-amber-700 leading-relaxed">
           {currentQuestion.question}
         </p>
         
         {currentQuestion.type === 'numeric' ? (
           <div className="space-y-4">
             <input
-              type="text" // Consider type="number"? Requires more validation maybe.
+              type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="w-full px-4 py-3 text-lg border-2 border-gray-200 rounded-lg focus:outline-none focus:border-green-500 transition-colors text-black"
-              placeholder={`Entrez une valeur ${currentQuestion.unit ? `(en ${currentQuestion.unit})` : ''}... Ou "Je ne sais pas" si applicable.`} // Update placeholder
+              className="w-full px-4 py-3 text-lg border-2 border-amber-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors text-black"
+              placeholder={`Entrez une valeur ${currentQuestion.unit ? `(en ${currentQuestion.unit})` : ''}... Ou "Je ne sais pas" si applicable.`}
             />
           </div>
         ) : (

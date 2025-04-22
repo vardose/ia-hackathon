@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --background: #f0f7f0;
-  --foreground: #2c3e2d;
-  --accent-green: #4aa76c;
-  --accent-blue: #3c8784;
-  --accent-yellow: #e5c26d;
+  --background: #fff9e6;
+  --foreground: #653d1b;
+  --accent-orange: #e67e22;
+  --accent-amber: #f59e0b;
+  --accent-green: #65a30d;
 }
 
 @theme inline {
@@ -18,8 +18,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a2a1a;
-    --foreground: #e5f0e5;
+    --background: #2d1e0f;
+    --foreground: #ffe4bd;
   }
 }
 
@@ -34,15 +34,25 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Animations pour les éléments de feuilles */
+/* Animations pour les éléments flottants */
 @keyframes floatAnimation {
   0% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-10px) rotate(5deg); }
   100% { transform: translateY(0) rotate(0); }
 }
 
+@keyframes floatAnimationReverse {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
 .floating {
   animation: floatAnimation 6s ease-in-out infinite;
+}
+
+.floating-reverse {
+  animation: floatAnimationReverse 7s ease-in-out infinite;
 }
 
 /* Style pour les doughnut charts */
