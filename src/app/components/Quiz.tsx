@@ -80,6 +80,8 @@ export default function Quiz() {
   const [showRecap, setShowRecap] = useState(false);
   const [minPossibleScore, setMinPossibleScore] = useState(0);
   const [maxPossibleScore, setMaxPossibleScore] = useState(0);
+  const [weeklyBudget, setWeeklyBudget] = useState<number | null>(null);
+  const [weeklyWaste, setWeeklyWaste] = useState<number | null>(null);
 
   const currentQuestion = typedQuizData.questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === typedQuizData.questions.length - 1;
@@ -174,6 +176,14 @@ export default function Quiz() {
       }
     }
 
+    if (currentQuestion.id === 21) {
+      // Budget question
+      setWeeklyBudget(parseFloat(inputValue) || 0);
+    } else if (currentQuestion.id === 22) {
+      // Waste question
+      setWeeklyWaste(parseFloat(inputValue) || 0);
+    }
+
     // Only proceed if an answer was provided or handled (for numeric)
     if (answerProvided) {
       setInputValue(''); // Reset input for the next question
@@ -207,6 +217,8 @@ export default function Quiz() {
     setAnswers({});
     setTotalScore(0);
     setShowRecap(false);
+    setWeeklyBudget(null);
+    setWeeklyWaste(null);
   };
 
   // --- Recap Screen --- 
@@ -320,6 +332,9 @@ export default function Quiz() {
       bgColorClass = 'from-red-50 to-rose-100';
     }
 
+    // Calculate annual food waste cost
+    const annualWasteCost = (weeklyWaste || 0) * 52;
+
     return (
       // Main container with dynamic gradient background
       <div className={`max-w-2xl mx-auto p-6 sm:p-8 bg-gradient-to-br ${bgColorClass} rounded-2xl shadow-xl text-center transition-colors duration-500`}>
@@ -347,6 +362,14 @@ export default function Quiz() {
         {/* Feedback Message Section */}
         <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8">
            <p className="text-lg sm:text-xl text-gray-700 italic leading-relaxed">{feedbackMessage}</p>
+        </div>
+
+        {/* New section for annual waste cost */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8">
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">Estimation du gaspillage annuel</h3>
+          <p className="text-base text-gray-700">
+            Vous gaspillez environ <span className="font-bold text-red-500">{annualWasteCost.toFixed(2)}€</span> par an en nourriture.
+          </p>
         </div>
 
         {/* Detailed Answers Section */}
@@ -460,4 +483,4 @@ export default function Quiz() {
       </div>
     </div>
   );
-} 
+}
